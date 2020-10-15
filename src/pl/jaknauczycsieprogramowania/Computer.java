@@ -1,9 +1,7 @@
 package pl.jaknauczycsieprogramowania;
 
-import pl.jaknauczycsieprogramowania.Headphones;
-import pl.jaknauczycsieprogramowania.Monitor;
-import pl.jaknauczycsieprogramowania.USBDevice;
 import pl.jaknauczycsieprogramowania.drive.Drive;
+import pl.jaknauczycsieprogramowania.usbdevice.USBDevice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +11,7 @@ public class Computer {
    private Drive drive;
    private Headphones headphones;
 
-   List<USBDevice> usnDevices = new ArrayList<>();
+  private List<USBDevice> usnDevices = new ArrayList<>();
    public Computer(Monitor monitor,Drive drive){
        this.monitor = monitor;
        this.drive = drive;
@@ -46,4 +44,24 @@ public class Computer {
     public List<USBDevice> getUsnDevices() {
         return usnDevices;
     }
+
+    public void addUSBDevice(USBDevice usbDevice){
+        boolean isConnected = usbDevice.connect();
+        if (isConnected){
+            usnDevices.add(usbDevice);
+        }
+    }
+    public void removeUSBDevice(USBDevice usbDevice){
+        boolean isDisconnected = usbDevice.disconnect();
+        if(isDisconnected){
+            usnDevices.remove(usbDevice);
+        }
+
+
+
+   }
+
+
+
+
 }
